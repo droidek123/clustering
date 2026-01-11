@@ -1,9 +1,9 @@
 import subprocess
-
+import sys
 
 def run(script_name):
     print(f"\n>>> Uruchamiam: {script_name}\n")
-    subprocess.run(["python", script_name])
+    subprocess.run([sys.executable, script_name])
 
 
 def main_menu():
