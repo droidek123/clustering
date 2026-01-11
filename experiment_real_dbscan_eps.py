@@ -7,7 +7,7 @@ from stability_analysis import clustering_stability
 
 
 def main():
-    X, _, _ = load_city_dataset("polish_cities_2020.csv")
+    X, _, _ = load_city_dataset("data/polish_cities_2020.csv")
 
     eps_values = np.linspace(0.5, 3.0, 12)
     ari_means = []

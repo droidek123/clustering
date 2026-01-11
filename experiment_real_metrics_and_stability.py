@@ -11,12 +11,12 @@ from custom_clustering import custom_clustering
 
 
 def main():
-    X, _, _ = load_city_dataset("polish_cities_2020.csv")
+    X, _, _ = load_city_dataset("data/polish_cities_2020.csv")
 
     algorithms = {
         "KMeans": (kmeans_clustering, {"n_clusters": 3}),
         "Hierarchical": (hierarchical_clustering, {"n_clusters": 3}),
-        "DBSCAN": (dbscan_clustering, {"eps": 1.2, "min_samples": 2}),
+        "DBSCAN": (dbscan_clustering, {"eps": 2.32, "min_samples": 2}),
         "Custom": (custom_clustering, {"n_clusters": 4}),
     }
 
