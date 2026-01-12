@@ -23,7 +23,6 @@ def evaluate_clustering(X, labels, algorithm_name):
     n_clusters = len(set(labels_filtered))
     
     if n_clusters < 2:
-        print(f"\n{algorithm_name}: Za mało klastrów do oceny (znaleziono: {n_clusters})")
         return None
     
     # Obliczanie metryk
