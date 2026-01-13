@@ -1,5 +1,5 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 CSV_PATH = "benchmark_results.csv"
 
@@ -12,9 +12,6 @@ def header(title):
 
 df = pd.read_csv(CSV_PATH)
 
-# ======================================================
-# TABELA 1 – LICZBA EKSPERYMENTÓW (OPISOWA)
-# ======================================================
 header("TABLE 1: NUMBER OF EXPERIMENTS")
 
 counts = (
@@ -28,9 +25,6 @@ print(counts.to_frame().to_latex(
     label="tab:experiment_counts"
 ))
 
-# ======================================================
-# TABELA 2 – ROZKŁAD LICZBY CECH
-# ======================================================
 header("TABLE 2: FEATURE COUNTS")
 
 features = (
@@ -43,9 +37,6 @@ print(features.to_frame("Liczba cech").to_latex(
     label="tab:feature_counts"
 ))
 
-# ======================================================
-# TABELA 3 – ŚREDNIA STABILNOŚĆ (ARI) PER ALGORYTM
-# ======================================================
 header("TABLE 3: MEAN ARI PER ALGORITHM")
 
 mean_ari = (
@@ -60,9 +51,7 @@ print(mean_ari.to_latex(
     label="tab:mean_ari"
 ))
 
-# ======================================================
-# TABELA 4 – ROZPIĘTOŚĆ WYNIKÓW (MIN / MAX ARI)
-# ======================================================
+
 header("TABLE 4: ARI RANGE")
 
 ari_range = (
@@ -77,9 +66,6 @@ print(ari_range.to_latex(
     label="tab:ari_range"
 ))
 
-# ======================================================
-# TABELA 5 – ŚREDNIA STABILNOŚĆ VS LICZBA CECH
-# ======================================================
 header("TABLE 5: ARI VS NUMBER OF FEATURES")
 
 ari_features = (
@@ -97,9 +83,6 @@ print(ari_features.to_latex(
     bold_rows=True
 ))
 
-# ======================================================
-# TABELA 6 – JAKOŚĆ KLASTERYZACJI (ŚREDNIE)
-# ======================================================
 header("TABLE 6: MEAN QUALITY METRICS")
 
 quality = (
@@ -116,9 +99,6 @@ print(quality.to_latex(
     label="tab:mean_quality"
 ))
 
-# ======================================================
-# TABELA 7 – LICZBA KLASTRÓW (ŚREDNIA)
-# ======================================================
 header("TABLE 7: MEAN NUMBER OF CLUSTERS")
 
 clusters = (
@@ -133,9 +113,6 @@ print(clusters.to_frame("Średnia liczba klastrów").to_latex(
     label="tab:mean_clusters"
 ))
 
-# ======================================================
-# TABELA 8 – DBSCAN: ŚREDNIA STABILNOŚĆ VS PARAMETRY
-# ======================================================
 header("TABLE 8: DBSCAN PARAMETER SUMMARY")
 
 dbscan_summary = (
@@ -152,9 +129,6 @@ print(dbscan_summary.to_latex(
     label="tab:dbscan_param_summary"
 ))
 
-# ======================================================
-# TABELA 9 – ODSETEK NIEUDANYCH EKSPERYMENTÓW
-# ======================================================
 header("TABLE 9: FAILURE RATE")
 
 failures = (
@@ -169,9 +143,6 @@ print(failures.to_frame().to_latex(
     label="tab:failure_rate"
 ))
 
-# ======================================================
-# TABELA 10 – PODSUMOWANIE (PROSTA, OPISOWA)
-# ======================================================
 header("TABLE 10: SUMMARY")
 
 summary = pd.DataFrame({

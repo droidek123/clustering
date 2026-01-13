@@ -1,12 +1,9 @@
-# experiment_benchmark.py
 import numpy as np
-from clustering_algorithms import (
-    kmeans_clustering,
-    hierarchical_clustering,
-    dbscan_clustering
-)
-from custom_clustering import custom_clustering
+
+from clustering_algorithms import (dbscan_clustering, hierarchical_clustering,
+                                   kmeans_clustering)
 from clustering_benchmark import ClusteringBenchmark
+from custom_clustering import custom_clustering
 
 
 def main():

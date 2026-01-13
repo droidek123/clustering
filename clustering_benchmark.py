@@ -1,7 +1,7 @@
-# clustering_benchmark.py
-import pandas as pd
-import numpy as np
 import itertools
+
+import numpy as np
+import pandas as pd
 
 from city_data_loader import load_city_dataset
 from stability_analysis import stability_with_metrics

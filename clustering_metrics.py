@@ -3,29 +3,15 @@ from sklearn.metrics import (calinski_harabasz_score, davies_bouldin_score,
 
 
 def evaluate_clustering(X, labels, algorithm_name):
-    """
-    Ocena jakości klasteryzacji za pomocą trzech metryk.
-    
-    Args:
-        X: dane wejściowe
-        labels: etykiety klastrów
-        algorithm_name: nazwa algorytmu
-    
-    Returns:
-        dict: słownik z metrykami
-    """
-    # Filtrujemy punkty szumu dla DBSCAN (etykiety -1)
     mask = labels != -1
     X_filtered = X[mask]
     labels_filtered = labels[mask]
     
-    # Sprawdzamy czy mamy wystarczająco klastrów
     n_clusters = len(set(labels_filtered))
     
     if n_clusters < 2:
         return None
     
-    # Obliczanie metryk
     silhouette = silhouette_score(X_filtered, labels_filtered)
     davies_bouldin = davies_bouldin_score(X_filtered, labels_filtered)
     calinski_harabasz = calinski_harabasz_score(X_filtered, labels_filtered)
@@ -41,7 +27,6 @@ def evaluate_clustering(X, labels, algorithm_name):
     return metrics
 
 def print_metrics(metrics):
-    """Wyświetla metryki w czytelny sposób."""
     if metrics is None:
         return
     

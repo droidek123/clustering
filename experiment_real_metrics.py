@@ -1,12 +1,9 @@
-from city_data_loader import load_city_dataset
-from clustering_metrics import evaluate_clustering, print_metrics
 import matplotlib.pyplot as plt
 
-from clustering_algorithms import (
-    kmeans_clustering,
-    hierarchical_clustering,
-    dbscan_clustering
-)
+from city_data_loader import load_city_dataset
+from clustering_algorithms import (dbscan_clustering, hierarchical_clustering,
+                                   kmeans_clustering)
+from clustering_metrics import evaluate_clustering, print_metrics
 from custom_clustering import custom_clustering
 
 
@@ -20,7 +17,6 @@ def main():
         "Custom": (custom_clustering, {"n_clusters": 4}),
     }
 
-    # LISTY DO WYKRESU
     algo_names = []
     silhouettes = []
 
@@ -33,7 +29,6 @@ def main():
             algo_names.append(name)
             silhouettes.append(metrics["silhouette"])
 
-    # WYKRES
     plt.figure(figsize=(8, 5))
     plt.bar(algo_names, silhouettes)
     plt.ylabel("Silhouette score")

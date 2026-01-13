@@ -4,8 +4,6 @@ from sklearn.preprocessing import StandardScaler
 
 def generate_data(n_samples=500, centers=4, n_features=2, cluster_std=0.85, random_state=0):
     """
-    Generuje dane dla algorytmów klasteryzacji.
-    
     Args:
         n_samples: liczba próbek
         centers: liczba naturalnych skupisk

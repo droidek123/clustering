@@ -1,22 +1,13 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
-# ======================================================
-# KONFIGURACJA
-# ======================================================
 CSV_PATH = "benchmark_results.csv"
 EPS_OPTIMAL = 2.55
 N_RUNS = 25
 
-# ======================================================
-# WCZYTANIE DANYCH
-# ======================================================
 df = pd.read_csv(CSV_PATH)
 
-# ======================================================
-# 1. DBSCAN – STABILNOŚĆ vs EPS (OSOBNE WYKRESY)
-# ======================================================
 df_db = df[
     (df["algorithm"] == "DBSCAN") &
     (df["ARI_mean"].notna())
@@ -60,10 +51,6 @@ for min_samples in sorted(df_db["min_samples"].unique()):
     plt.tight_layout()
     plt.show()
 
-# ======================================================
-# 2. DBSCAN – ROZMIESZCZENIE KONFIGURACJI (SCATTER)
-# ======================================================
-
 plt.figure(figsize=(8, 6))
 
 sc = plt.scatter(
@@ -98,10 +85,6 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-# ======================================================
-# 4. ALGORYTMY CENTROIDOWE – OSOBNE WYKRESY
-# ======================================================
-
 df_centroid = df[
     (df["algorithm"].isin(["KMeans", "Hierarchical", "Custom"])) &
     (df["ARI_mean"].notna())
@@ -129,10 +112,6 @@ for algo in ["KMeans", "Hierarchical", "Custom"]:
     plt.tight_layout()
     plt.show()
 
-# ======================================================
-# 5. PORÓWNANIE ALGORYTMÓW – NAJLEPSZE KONFIGURACJE
-# (bez trywialnego ARI = 1 dla DBSCAN)
-# ======================================================
 best = df[
     (df["ARI_mean"].notna()) &
     (
@@ -166,9 +145,6 @@ plt.grid(axis="y")
 plt.tight_layout()
 plt.show()
 
-# ======================================================
-# 5. WPŁYW LICZBY CECH – JAKOŚĆ (SILHOUETTE)
-# ======================================================
 df_sil = df[df["silhouette"].notna()]
 
 plt.figure(figsize=(8, 6))
