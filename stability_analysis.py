@@ -3,6 +3,10 @@ from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
 
 from clustering_metrics import evaluate_clustering
 
+def is_trivial_clustering(labels):
+    unique = set(labels)
+    unique.discard(-1)
+    return len(unique) <= 1
 
 def clustering_stability(
     clustering_fn,
@@ -31,12 +35,15 @@ def clustering_stability(
 
         labels_sub = clustering_fn(X_sub, **fn_params)
 
-        ari_scores.append(
-            adjusted_rand_score(base_sub, labels_sub)
-        )
-        nmi_scores.append(
-            normalized_mutual_info_score(base_sub, labels_sub)
-        )
+        if is_trivial_clustering(base_sub) or is_trivial_clustering(labels_sub):
+            ari = 0.0
+            nmi = 0.0
+        else:
+            ari = adjusted_rand_score(base_sub, labels_sub)
+            nmi = normalized_mutual_info_score(base_sub, labels_sub)
+
+        ari_scores.append(ari)
+        nmi_scores.append(nmi)
 
     return {
         "ARI_scores": ari_scores,
