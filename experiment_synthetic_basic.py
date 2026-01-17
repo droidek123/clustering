@@ -1,13 +1,10 @@
 import matplotlib.pyplot as plt
-from data_generator import generate_data
-from clustering_metrics import evaluate_clustering, print_metrics
 
-from clustering_algorithms import (
-    kmeans_clustering,
-    hierarchical_clustering,
-    dbscan_clustering
-)
+from clustering_algorithms import (dbscan_clustering, hierarchical_clustering,
+                                   kmeans_clustering)
+from clustering_metrics import evaluate_clustering, print_metrics
 from custom_clustering import custom_clustering
+from data_generator import generate_data
 
 
 def main():
@@ -34,7 +31,6 @@ def main():
         print_metrics(metrics)
         results[name] = labels
 
-    # WIZUALIZACJA 2D
     fig, axes = plt.subplots(2, 2, figsize=(14, 12))
     axes = axes.flatten()
 

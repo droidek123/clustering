@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from city_data_loader import load_city_dataset
 from clustering_algorithms import dbscan_clustering
@@ -38,7 +38,6 @@ def main():
 
         print(f"eps={eps:.2f} -> ARI={result['ARI_mean']:.3f}, klastry={n_clusters}")
 
-    # Wykres
     plt.figure(figsize=(8, 5))
     plt.errorbar(eps_values, ari_means, yerr=ari_stds, marker="o", capsize=4)
     plt.xlabel("eps")

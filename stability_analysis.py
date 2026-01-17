@@ -1,6 +1,12 @@
 import numpy as np
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
+
 from clustering_metrics import evaluate_clustering
+
+def is_trivial_clustering(labels):
+    unique = set(labels)
+    unique.discard(-1)
+    return len(unique) <= 1
 
 def clustering_stability(
     clustering_fn,
@@ -10,9 +16,6 @@ def clustering_stability(
     subsample_ratio=0.85,
     random_state=42
 ):
-    """
-    Analiza stabilności klasteryzacji dla funkcji clustering_fn(X, **fn_params)
-    """
     rng = np.random.default_rng(random_state)
 
     base_labels = clustering_fn(X, **fn_params)
@@ -32,12 +35,15 @@ def clustering_stability(
 
         labels_sub = clustering_fn(X_sub, **fn_params)
 
-        ari_scores.append(
-            adjusted_rand_score(base_sub, labels_sub)
-        )
-        nmi_scores.append(
-            normalized_mutual_info_score(base_sub, labels_sub)
-        )
+        if is_trivial_clustering(base_sub) or is_trivial_clustering(labels_sub):
+            ari = 0.0
+            nmi = 0.0
+        else:
+            ari = adjusted_rand_score(base_sub, labels_sub)
+            nmi = normalized_mutual_info_score(base_sub, labels_sub)
+
+        ari_scores.append(ari)
+        nmi_scores.append(nmi)
 
     return {
         "ARI_scores": ari_scores,
@@ -58,10 +64,6 @@ def stability_with_metrics(
     subsample_ratio=0.85,
     random_state=42
 ):
-    """
-    Analiza stabilności + klasyczne metryki jakości klasteryzacji.
-    """
-    # Stabilność
     stability = clustering_stability(
         clustering_fn=clustering_fn,
         X=X,
@@ -71,10 +73,8 @@ def stability_with_metrics(
         random_state=random_state
     )
 
-    # Klasteryzacja bazowa
     labels = clustering_fn(X, **fn_params)
 
-    # Metryki jakości (TWÓJ ISTNIEJĄCY KOD)
     quality = evaluate_clustering(
         X=X,
         labels=labels,
