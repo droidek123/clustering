@@ -1,0 +1,19 @@
+algorithm_1,algorithm_2,metric,statistic,p_value,significant
+KMeans,Hierarchical,ARI,316.0,0.9528951616790268,No
+KMeans,DBSCAN,ARI,228.0,0.09907408227758573,No
+KMeans,Custom (Mean Shift),ARI,246.0,0.19710272553431796,No
+Hierarchical,DBSCAN,ARI,217.0,0.06274995490990466,No
+Hierarchical,Custom (Mean Shift),ARI,244.0,0.18462645339308514,No
+DBSCAN,Custom (Mean Shift),ARI,408.0,0.06401197234243243,No
+KMeans,Hierarchical,NMI,304.0,0.8748503154803027,No
+KMeans,DBSCAN,NMI,210.0,0.04521006292489874,Yes
+KMeans,Custom (Mean Shift),NMI,218.0,0.06664383989502115,No
+Hierarchical,DBSCAN,NMI,191.0,0.017777686405815778,Yes
+Hierarchical,Custom (Mean Shift),NMI,214.5,0.05748051201656553,No
+DBSCAN,Custom (Mean Shift),NMI,403.0,0.0796596138854637,No
+KMeans,Hierarchical,Silhouette,0.5,1.0,No
+KMeans,DBSCAN,Silhouette,0.0,1.0,No
+KMeans,Custom (Mean Shift),Silhouette,0.0,1.0,No
+Hierarchical,DBSCAN,Silhouette,0.0,1.0,No
+Hierarchical,Custom (Mean Shift),Silhouette,0.0,1.0,No
+DBSCAN,Custom (Mean Shift),Silhouette,1.0,1.0,No

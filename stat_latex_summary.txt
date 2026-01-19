@@ -1,0 +1,51 @@
+% RANKING ALGORYTMÓW
+\begin{tabular}{rlrrr}
+\toprule
+Pozycja & Algorytm & ARI & NMI & Silhouette \\
+\midrule
+1 & Custom (Mean Shift) & 0.643600 & 0.817100 & 0.223100 \\
+2 & DBSCAN & 0.732800 & 0.834300 & 0.318400 \\
+3 & Hierarchical & 0.509200 & 0.668800 & 0.191000 \\
+4 & KMeans & 0.512600 & 0.659100 & 0.191000 \\
+\bottomrule
+\end{tabular}
+
+
+% MEAN SHIFT - METRYKI
+\begin{tabular}{lrrrr}
+\toprule
+Metrika & Średnia & Std Dev & Min & Max \\
+\midrule
+ARI & 0.643600 & 0.253300 & 0.180900 & 1.000000 \\
+NMI & 0.817100 & 0.146500 & 0.413600 & 1.000000 \\
+Silhouette & 0.223100 & 0.000000 & 0.223100 & 0.223100 \\
+Davies-Bouldin & 0.714400 & 0.000000 & 0.714400 & 0.714400 \\
+Calinski-Harabasz & 6.201300 & 0.000000 & 6.201300 & 6.201300 \\
+\bottomrule
+\end{tabular}
+
+
+% PORÓWNANIE ARI
+\begin{tabular}{lrrrr}
+\toprule
+Algorytm & Średnia & Std Dev & Min & Max \\
+\midrule
+KMeans & 0.512600 & 0.382900 & 0.057100 & 1.000000 \\
+Hierarchical & 0.509200 & 0.374200 & 0.057100 & 1.000000 \\
+DBSCAN & 0.732800 & 0.264100 & 0.000000 & 1.000000 \\
+Custom (Mean Shift) & 0.643600 & 0.253300 & 0.180900 & 1.000000 \\
+\bottomrule
+\end{tabular}
+
+
+% PORÓWNANIE NMI
+\begin{tabular}{lrrrr}
+\toprule
+Algorytm & Średnia & Std Dev & Min & Max \\
+\midrule
+KMeans & 0.659100 & 0.265700 & 0.345500 & 1.000000 \\
+Hierarchical & 0.668800 & 0.254600 & 0.345500 & 1.000000 \\
+DBSCAN & 0.834300 & 0.258300 & 0.000000 & 1.000000 \\
+Custom (Mean Shift) & 0.817100 & 0.146500 & 0.413600 & 1.000000 \\
+\bottomrule
+\end{tabular}

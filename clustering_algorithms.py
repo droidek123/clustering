@@ -18,6 +18,6 @@ def dbscan_clustering(X, eps=0.3, min_samples=20):
     labels = dbscan.fit_predict(X)
     return labels
 
-def custom_centroid_clustering(X, n_clusters=4, random_state=42):
-    labels = custom_clustering(X, n_clusters=n_clusters, random_state=random_state)
+def custom_centroid_clustering(X, bandwidth=None, random_state=42):
+    labels = custom_clustering(X, bandwidth=bandwidth, random_state=random_state)
     return labels

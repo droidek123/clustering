@@ -20,7 +20,7 @@ def main():
         "KMeans": (kmeans_clustering, {"n_clusters": 4}),
         "Hierarchical": (hierarchical_clustering, {"n_clusters": 4}),
         "DBSCAN": (dbscan_clustering, {"eps": 0.3, "min_samples": 20}),
-        "Custom": (custom_clustering, {"n_clusters": 4}),
+        "Custom (Mean Shift)": (custom_clustering, {}),
     }
 
     results = {}

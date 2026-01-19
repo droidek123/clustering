@@ -1,12 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import os
 
 CSV_PATH = "benchmark_results.csv"
 EPS_OPTIMAL = 2.55
 N_RUNS = 25
+PLOTS_DIR = "plots"
+
+# Utwórz folder na wykresy
+os.makedirs(PLOTS_DIR, exist_ok=True)
 
 df = pd.read_csv(CSV_PATH)
+
+plot_counter = 1
 
 df_db = df[
     (df["algorithm"] == "DBSCAN") &
@@ -49,7 +56,9 @@ for min_samples in sorted(df_db["min_samples"].unique()):
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"{PLOTS_DIR}/{plot_counter:02d}_dbscan_min_samples_{int(min_samples)}.png", dpi=100)
+    plt.close()
+    plot_counter += 1
 
 plt.figure(figsize=(8, 6))
 
@@ -83,14 +92,16 @@ plt.title("DBSCAN – przestrzeń parametrów i jakość klasteryzacji")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
+plt.savefig(f"{PLOTS_DIR}/{plot_counter:02d}_dbscan_heatmap.png", dpi=100)
+plt.close()
+plot_counter += 1
 
 df_centroid = df[
-    (df["algorithm"].isin(["KMeans", "Hierarchical", "Custom"])) &
+    (df["algorithm"].isin(["KMeans", "Hierarchical", "Custom (Mean Shift)"])) &
     (df["ARI_mean"].notna())
 ]
 
-for algo in ["KMeans", "Hierarchical", "Custom"]:
+for algo in ["KMeans", "Hierarchical", "Custom (Mean Shift)"]:
     subset = (
         df_centroid[df_centroid["algorithm"] == algo]
         .sort_values("n_clusters")
@@ -110,7 +121,9 @@ for algo in ["KMeans", "Hierarchical", "Custom"]:
     plt.title(f"{algo} – wpływ liczby klastrów na stabilność")
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"{PLOTS_DIR}/{plot_counter:02d}_{algo.replace(' ', '_')}_clusters.png", dpi=100)
+    plt.close()
+    plot_counter += 1
 
 best = df[
     (df["ARI_mean"].notna()) &
@@ -143,13 +156,15 @@ plt.ylabel(
 plt.title("Porównanie algorytmów – najlepsze sensowne konfiguracje")
 plt.grid(axis="y")
 plt.tight_layout()
-plt.show()
+plt.savefig(f"{PLOTS_DIR}/{plot_counter:02d}_algorithms_comparison.png", dpi=100)
+plt.close()
+plot_counter += 1
 
 df_sil = df[df["silhouette"].notna()]
 
 plt.figure(figsize=(8, 6))
 
-for algo in ["KMeans", "Hierarchical", "Custom", "DBSCAN"]:
+for algo in ["KMeans", "Hierarchical", "Custom (Mean Shift)", "DBSCAN"]:
     subset = df_sil[df_sil["algorithm"] == algo]
 
     grouped = (
@@ -171,4 +186,8 @@ plt.title("Wpływ liczby cech na jakość klasteryzacji")
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
+plt.savefig(f"{PLOTS_DIR}/{plot_counter:02d}_silhouette_features.png", dpi=100)
+plt.close()
+plot_counter += 1
+
+print(f"\n✅ Wykresy zapisane w folderze: {PLOTS_DIR}/")

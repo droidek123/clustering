@@ -14,7 +14,7 @@ def main():
         "KMeans": (kmeans_clustering, {"n_clusters": 4}),
         "Hierarchical": (hierarchical_clustering, {"n_clusters": 3}),
         "DBSCAN": (dbscan_clustering, {"eps": 2.32, "min_samples": 2}),
-        "Custom": (custom_clustering, {"n_clusters": 4}),
+        "Custom (Mean Shift)": (custom_clustering, {}),
     }
 
     algo_names = []

@@ -23,9 +23,9 @@ def main():
                 "min_samples": [2, 4, 6, 10]
             }
         ),
-        "Custom": (
+        "Custom (Mean Shift)": (
             custom_clustering,
-            {"n_clusters": [2, 3, 4, 5, 6]}
+            {}
         ),
     }
 
